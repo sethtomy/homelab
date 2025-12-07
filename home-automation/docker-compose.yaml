@@ -4,11 +4,11 @@ services:
     image: homebridge/homebridge:latest
     restart: unless-stopped
     network_mode: host
-#    volumes:
-#      - ./homebridge/config.json:/homebridge/config.json
-#      - ./homebridge/accessories.json:/homebridge/accessories.json
-#      - ./homebridge/persist:/homebridge/persist
-#      - ./homebridge/plugins:/homebridge/plugins
+    volumes:
+      - ./homebridge/config.json:/homebridge/config.json
+      - ./homebridge/accessories.json:/homebridge/accessories.json
+      - ./homebridge/persist:/homebridge/persist
+      - ./homebridge/plugins:/homebridge/plugins
     logging:
       driver: json-file
       options:
