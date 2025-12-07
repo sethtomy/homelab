@@ -1,0 +1,16 @@
+services:
+
+  homebridge:
+    image: homebridge/homebridge:1.11.1
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - ./homebridge/config.json:/homebridge/config.json
+      - ./homebridge/accessories.json:/homebridge/accessories.json
+      - ./homebridge/persist:/homebridge/persist
+      - ./homebridge/plugins:/homebridge/plugins
+    logging:
+      driver: json-file
+      options:
+        max-size: "10mb"
+        max-file: "1"
