@@ -1,2 +1,8 @@
+# IntelliJ
 .idea/
 homelab.iml
+
+# Observability
+prometheus_data/
+
+# Homebridge
