@@ -1,0 +1,39 @@
+services:
+  tailscale:
+    image: tailscale/tailscale:v1.90.9
+    container_name: tailscale
+    hostname: tailscale-exit-node
+    restart: unless-stopped
+    
+    # Enable IP forwarding and required capabilities for exit node functionality
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+      - SYS_MODULE
+    
+    # Mount necessary system files and directories
+    volumes:
+      - ./tailscale/var/lib:/var/lib/tailscale
+      - ./tailscale/var/run:/var/run/tailscale
+      - /dev/net/tun:/dev/net/tun
+      - /sys/module/iptables_nat:/sys/module/iptables_nat
+    
+    # Network mode host for proper routing
+    network_mode: host
+    
+    environment:
+      # Enable IP forwarding for exit node
+      - TS_ACCEPT_DNS=false
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_SOCKET=/var/run/tailscale/tailscaled.sock
+    
+    # Healthcheck
+    healthcheck:
+      test: ["CMD", "tailscale", "status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    
+    # Run tailscaled daemon
+    command: tailscaled
