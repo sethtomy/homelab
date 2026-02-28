@@ -30,7 +30,8 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.cadvisor.rule=Host(`homelab.local`) && PathPrefix(`/cadvisor`)"
-      - "traefik.http.routers.cadvisor.entrypoints=web"
+      - "traefik.http.routers.cadvisor.entrypoints=websecure"
+      - "traefik.http.routers.cadvisor.tls=true"
       - "traefik.http.services.cadvisor.loadbalancer.server.port=8080"
     networks:
       - monitoring
@@ -48,12 +49,13 @@ services:
       - --web.console.libraries=/etc/prometheus/console_libraries
       - --web.console.templates=/etc/prometheus/consoles
       - --web.enable-lifecycle
-      - --web.external-url=http://homelab.local/prometheus
+      - --web.external-url=https://homelab.local/prometheus
       - --web.route-prefix=/
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.prometheus.rule=Host(`homelab.local`) && PathPrefix(`/prometheus`)"
-      - "traefik.http.routers.prometheus.entrypoints=web"
+      - "traefik.http.routers.prometheus.entrypoints=websecure"
+      - "traefik.http.routers.prometheus.tls=true"
       - "traefik.http.services.prometheus.loadbalancer.server.port=9090"
       - "traefik.http.middlewares.prometheus-stripprefix.stripprefix.prefixes=/prometheus"
       - "traefik.http.routers.prometheus.middlewares=prometheus-stripprefix"
@@ -66,7 +68,7 @@ services:
     expose:
       - 3000
     environment:
-      - GF_SERVER_ROOT_URL=http://homelab.local/grafana
+      - GF_SERVER_ROOT_URL=https://homelab.local/grafana
       - GF_SERVER_SERVE_FROM_SUB_PATH=true
     volumes:
       - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
@@ -74,7 +76,8 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.grafana.rule=Host(`homelab.local`) && PathPrefix(`/grafana`)"
-      - "traefik.http.routers.grafana.entrypoints=web"
+      - "traefik.http.routers.grafana.entrypoints=websecure"
+      - "traefik.http.routers.grafana.tls=true"
       - "traefik.http.services.grafana.loadbalancer.server.port=3000"
     networks:
       - monitoring
