@@ -1,0 +1,3 @@
+include:
+  - home-automation/docker-compose.yaml
+  - observability/docker-compose.yaml
