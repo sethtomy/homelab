@@ -1,14 +1,19 @@
 services:
-
   homebridge:
     image: homebridge/homebridge:latest
     restart: unless-stopped
-    network_mode: host
+    expose:
+      - 8581
     volumes:
       - ./homebridge/config.json:/homebridge/config.json
       - ./homebridge/accessories.json:/homebridge/accessories.json
       - ./homebridge/persist:/homebridge/persist
       - ./homebridge/plugins:/homebridge/plugins
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.homebridge.rule=Host(`tomy.com`) && PathPrefix(`/homebridge`)"
+      - "traefik.http.routers.homebridge.entrypoints=web"
+      - "traefik.http.services.homebridge.loadbalancer.server.port=8581"
     logging:
       driver: json-file
       options:
