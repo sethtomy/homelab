@@ -1,3 +1,8 @@
+networks:
+  monitoring:
+    external: true
+    name: observability_monitoring
+
 services:
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
@@ -15,4 +20,7 @@ services:
       - "traefik.http.routers.homepage.entrypoints=websecure"
       - "traefik.http.routers.homepage.tls=true"
       - "traefik.http.services.homepage.loadbalancer.server.port=3000"
+    networks:
+      - default
+      - monitoring
     restart: unless-stopped

@@ -1,3 +1,8 @@
+networks:
+  monitoring:
+    external: true
+    name: observability_monitoring
+
 services:
   homebridge:
     image: homebridge/homebridge:latest
@@ -15,6 +20,9 @@ services:
       - "traefik.http.routers.homebridge.entrypoints=websecure"
       - "traefik.http.routers.homebridge.tls=true"
       - "traefik.http.services.homebridge.loadbalancer.server.port=8581"
+    networks:
+      - default
+      - monitoring
     logging:
       driver: json-file
       options:

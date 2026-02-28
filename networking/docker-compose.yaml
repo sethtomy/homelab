@@ -1,3 +1,8 @@
+networks:
+  monitoring:
+    external: true
+    name: observability_monitoring
+
 services:
   traefik:
     image: traefik:v3.0
@@ -23,4 +28,7 @@ services:
       - "traefik.http.routers.traefik.middlewares=traefik-stripprefix"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - default
+      - monitoring
     restart: unless-stopped
