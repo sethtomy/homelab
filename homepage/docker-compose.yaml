@@ -5,13 +5,13 @@ services:
     expose:
       - 3000
     environment:
-      - HOMEPAGE_ALLOWED_HOSTS=tomy.com
+      - HOMEPAGE_ALLOWED_HOSTS=homelab.local
     volumes:
       - ./config:/app/config
       - /var/run/docker.sock:/var/run/docker.sock:ro
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.homepage.rule=Host(`tomy.com`)"
+      - "traefik.http.routers.homepage.rule=Host(`homelab.local`)"
       - "traefik.http.routers.homepage.entrypoints=web"
       - "traefik.http.services.homepage.loadbalancer.server.port=3000"
     restart: unless-stopped

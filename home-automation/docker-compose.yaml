@@ -11,7 +11,7 @@ services:
       - ./homebridge/plugins:/homebridge/plugins
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.homebridge.rule=Host(`tomy.com`) && PathPrefix(`/homebridge`)"
+      - "traefik.http.routers.homebridge.rule=Host(`homelab.local`) && PathPrefix(`/homebridge`)"
       - "traefik.http.routers.homebridge.entrypoints=web"
       - "traefik.http.services.homebridge.loadbalancer.server.port=8581"
     logging:
