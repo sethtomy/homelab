@@ -1,1 +1,16 @@
-{}
+{
+    "platforms": [
+        {
+            "name": "Config",
+            "port": 8581,
+            "platform": "config"
+        }
+    ],
+    "bridge": {
+        "name": "Homebridge 1914",
+        "username": "0E:BE:FA:E8:19:14",
+        "port": 51683,
+        "pin": "101-45-010",
+        "advertiser": "bonjour-hap"
+    }
+}
