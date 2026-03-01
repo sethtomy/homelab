@@ -1,0 +1,25 @@
+- Networking:
+    - Traefik:
+        icon: traefik.png
+        href: https://homelab.local/dashboard/
+        description: Reverse proxy and load balancer
+
+- Observability:
+    - Grafana:
+        icon: grafana.png
+        href: https://homelab.local/grafana
+        description: Metrics visualization
+    - Prometheus:
+        icon: prometheus.png
+        href: https://homelab.local/prometheus
+        description: Metrics collection
+    - cAdvisor:
+        icon: cadvisor.png
+        href: https://homelab.local/cadvisor
+        description: Container metrics
+
+- Home Automation:
+    - Homebridge:
+        icon: homebridge.png
+        href: https://homelab.local/homebridge
+        description: HomeKit bridge
