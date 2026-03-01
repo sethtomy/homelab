@@ -7,7 +7,7 @@ services:
     environment:
       - HOMEPAGE_ALLOWED_HOSTS=homelab.local
     volumes:
-      - ./config:/app/config:rw
+      - ./config:/app/config
       - /var/run/docker.sock:/var/run/docker.sock:ro
     labels:
       - "traefik.enable=true"

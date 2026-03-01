@@ -19,6 +19,10 @@ services:
       - "traefik.http.routers.traefik.entrypoints=websecure"
       - "traefik.http.routers.traefik.tls=true"
       - "traefik.http.routers.traefik.service=api@internal"
+      - homepage.group=Networking
+      - homepage.name=Traefik
+      - homepage.href=https://homelab.local/dashboard/
+      - homepage.description="HomeLab reverse proxy and load balancer"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     restart: unless-stopped
