@@ -1,3 +1,13 @@
 title: Homelab
 description: The Tomy household home lab
 
+layout:
+  Networking:
+    style: row
+    columns: 3
+  Observability:
+    style: row
+    columns: 3
+  Home Automation:
+    style: row
+    columns: 3
