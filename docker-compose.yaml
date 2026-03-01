@@ -2,4 +2,3 @@ include:
   - networking/docker-compose.yaml
   - home-automation/docker-compose.yaml
   - observability/docker-compose.yaml
-  - homepage/docker-compose.yaml
