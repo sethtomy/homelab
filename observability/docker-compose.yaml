@@ -1,6 +1,9 @@
 networks:
   monitoring:
     driver: bridge
+  homelab:
+    external: true
+    name: networking_homelab
 
 volumes:
   prometheus_data: {}
@@ -35,6 +38,7 @@ services:
       - "traefik.http.services.cadvisor.loadbalancer.server.port=8080"
     networks:
       - monitoring
+      - homelab
 
   prometheus:
     image: prom/prometheus:v3.8.0
@@ -62,6 +66,7 @@ services:
     restart: unless-stopped
     networks:
       - monitoring
+      - homelab
 
   grafana:
     image: grafana/grafana:12.3.0
@@ -81,3 +86,4 @@ services:
       - "traefik.http.services.grafana.loadbalancer.server.port=3000"
     networks:
       - monitoring
+      - homelab

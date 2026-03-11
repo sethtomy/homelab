@@ -1,3 +1,7 @@
+networks:
+  homelab:
+    driver: bridge
+
 services:
   traefik:
     image: traefik:v3.0
@@ -26,3 +30,5 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     restart: unless-stopped
+    networks:
+      - homelab
